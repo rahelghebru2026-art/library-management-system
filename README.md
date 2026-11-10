@@ -19,3 +19,9 @@ The relationship between `Genre` and `Book` is one-to-many. One genre can contai
 I used a foreign key (`genreId`) in the `Book` model instead of embedding genre information directly in every book record.
 
 This approach reduces data duplication, maintains data consistency, and makes it easier to update genre information in one place.
+
+## Relational Database vs. Document Database
+
+This project uses Prisma with PostgreSQL, a relational database. Related data is stored in separate tables and connected using relationships and foreign keys. For example, each Book has a `genreId` that links it to a Genre.
+
+In a document database, related information could instead be embedded inside a document. For example, a book document could contain its genre information directly. This can make retrieving related data easier in some cases, but it may also duplicate information.

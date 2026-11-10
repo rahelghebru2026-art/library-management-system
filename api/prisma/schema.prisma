@@ -18,6 +18,7 @@ model User {
   email     String   @unique
   role      Role     @default(PATRON)
   createdAt DateTime @default(now())
+  reviews Review[]
 }
 
 model Genre {
@@ -35,4 +36,17 @@ model Book {
   genreId       Int
   genre         Genre    @relation(fields: [genreId], references: [id])
   createdAt     DateTime @default(now())
+  reviews Review[]
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  bookId    Int
+  userId    Int
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  book Book @relation(fields: [bookId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
